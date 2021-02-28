@@ -1,0 +1,463 @@
+{
+	"info": {
+		"_postman_id": "f7f3930d-87ab-4288-a539-c8926d8a8478",
+		"name": "mapbox",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetGeocodingCity1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"if (pm.response.to.have.status(200)) {",
+							"    pm.test(\"Test data type of the response\", () => {",
+							"    pm.expect(pm.response.json()).to.be.an(\"object\")",
+							"})",
+							"{",
+							"    pm.test(\"Response city matches environment variable\", function () {",
+							"    pm.expect(pm.response.json().features[0].text).to.eql(pm.environment.get(\"city_1\"));",
+							"})}",
+							"{",
+							"    postman.setEnvironmentVariable(\"city_bbox_1\", pm.response.json().features[0].bbox);",
+							"    postman.setEnvironmentVariable(\"city_center_1\", pm.response.json().features[0].center);",
+							"}};",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/geocoding/v5/mapbox.places/{{city_1}}.json?access_token={{accsess_token}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"geocoding",
+						"v5",
+						"mapbox.places",
+						"{{city_1}}.json"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "{{accsess_token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetGeocodingCity2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"if (pm.response.to.have.status(200)) {",
+							"    pm.test(\"Test data type of the response\", () => {",
+							"    pm.expect(pm.response.json()).to.be.an(\"object\")",
+							"})",
+							"{",
+							"    pm.test(\"Response city matches environment variable\", function () {",
+							"    pm.expect(pm.response.json().features[0].text).to.eql(pm.environment.get(\"city_2\"));",
+							"})}",
+							"{",
+							"    postman.setEnvironmentVariable(\"city_bbox_2\", pm.response.json().features[0].bbox);",
+							"    postman.setEnvironmentVariable(\"city_center_2\", pm.response.json().features[0].center);",
+							"}};",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/geocoding/v5/mapbox.places/{{city_2}}.json?access_token={{accsess_token}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"geocoding",
+						"v5",
+						"mapbox.places",
+						"{{city_2}}.json"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "{{accsess_token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getDirectionsDriving",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"if (pm.response.to.have.status(200)) {",
+							"    pm.test(\"Test data type of the response\", () => {",
+							"    pm.expect(pm.response.json()).to.be.an(\"object\")",
+							"})",
+							"{",
+							"    pm.test(\"Response mode matches environment variable\", function () {",
+							"    pm.expect(pm.response.json().routes[0].legs[0].steps[0].mode).to.eql(pm.environment.get(\"driving_roiting_profile\"));",
+							"})}};",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/directions/v5/mapbox/{{driving_roiting_profile}}/{{city_center_1}};{{city_center_2}}?alternatives=true&geometries=geojson&steps=true&access_token={{accsess_token}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"directions",
+						"v5",
+						"mapbox",
+						"{{driving_roiting_profile}}",
+						"{{city_center_1}};{{city_center_2}}"
+					],
+					"query": [
+						{
+							"key": "alternatives",
+							"value": "true"
+						},
+						{
+							"key": "geometries",
+							"value": "geojson"
+						},
+						{
+							"key": "steps",
+							"value": "true"
+						},
+						{
+							"key": "access_token",
+							"value": "{{accsess_token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetGeocodingPlace1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"if (pm.response.to.have.status(200)) {",
+							"    pm.test(\"Test data type of the response\", () => {",
+							"    pm.expect(pm.response.json()).to.be.an(\"object\")",
+							"})",
+							"{",
+							"    pm.test(\"Response place matches environment variable\", function () {",
+							"    pm.expect(pm.response.json().features[0].text).to.eql(pm.environment.get(\"place_2\"));",
+							"})}",
+							"{",
+							"    postman.setEnvironmentVariable(\"place_center_2\", pm.response.json().features[0].center);",
+							"}};",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/geocoding/v5/mapbox.places/{{place_1}}.json?access_token={{accsess_token}}&bbox={{city_bbox_1}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"geocoding",
+						"v5",
+						"mapbox.places",
+						"{{place_1}}.json"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "{{accsess_token}}"
+						},
+						{
+							"key": "bbox",
+							"value": "{{city_bbox_1}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetGeocodingPlace2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"if (pm.response.to.have.status(200)) {",
+							"    pm.test(\"Test data type of the response\", () => {",
+							"    pm.expect(pm.response.json()).to.be.an(\"object\")",
+							"})",
+							"{",
+							"    pm.test(\"Response place matches environment variable\", function () {",
+							"    pm.expect(pm.response.json().features[0].text).to.eql(pm.environment.get(\"place_1\"));",
+							"})}",
+							"{",
+							"    postman.setEnvironmentVariable(\"place_center_1\", pm.response.json().features[0].center);",
+							"}};",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/geocoding/v5/mapbox.places/{{place_1}}.json?access_token={{accsess_token}}&bbox={{city_bbox_1}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"geocoding",
+						"v5",
+						"mapbox.places",
+						"{{place_1}}.json"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "{{accsess_token}}"
+						},
+						{
+							"key": "bbox",
+							"value": "{{city_bbox_1}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getDirectionsWalking",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"if (pm.response.to.have.status(200)) {",
+							"    pm.test(\"Test data type of the response\", () => {",
+							"    pm.expect(pm.response.json()).to.be.an(\"object\")",
+							"})",
+							"{",
+							"    pm.test(\"Response mode matches environment variable\", function () {",
+							"    pm.expect(pm.response.json().routes[0].legs[0].steps[0].mode).to.eql(pm.environment.get(\"walking_roiting_profile\"));",
+							"})}};",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/directions/v5/mapbox/{{walking_roiting_profile}}/{{place_center_1}};{{place_center_2}}?alternatives=true&geometries=geojson&steps=true&access_token={{accsess_token}}&walking_speed=6",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"directions",
+						"v5",
+						"mapbox",
+						"{{walking_roiting_profile}}",
+						"{{place_center_1}};{{place_center_2}}"
+					],
+					"query": [
+						{
+							"key": "alternatives",
+							"value": "true"
+						},
+						{
+							"key": "geometries",
+							"value": "geojson"
+						},
+						{
+							"key": "steps",
+							"value": "true"
+						},
+						{
+							"key": "access_token",
+							"value": "{{accsess_token}}"
+						},
+						{
+							"key": "walking_speed",
+							"value": "6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetDirectionInvalidDataInput",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 422\", function () {",
+							"  pm.response.to.have.status(422);",
+							"});",
+							"",
+							"if (pm.response.to.have.status(422)) {",
+							"{",
+							"    pm.test(\"Response message\", function () {",
+							"    pm.expect(pm.response.json().message).to.eql(pm.environment.get(\"invalid_longitude_message\"));",
+							"    pm.expect(pm.response.json().code).to.eql(\"InvalidInput\")",
+							"})}};"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/directions/v5/mapbox/{{walking_roiting_profile}}/{{place_center_wrong_data}};{{place_center_2}}?alternatives=true&geometries=geojson&steps=true&access_token={{accsess_token}}&walking_speed=6",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"directions",
+						"v5",
+						"mapbox",
+						"{{walking_roiting_profile}}",
+						"{{place_center_wrong_data}};{{place_center_2}}"
+					],
+					"query": [
+						{
+							"key": "alternatives",
+							"value": "true"
+						},
+						{
+							"key": "geometries",
+							"value": "geojson"
+						},
+						{
+							"key": "steps",
+							"value": "true"
+						},
+						{
+							"key": "access_token",
+							"value": "{{accsess_token}}"
+						},
+						{
+							"key": "walking_speed",
+							"value": "6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetDirectionProfileNotFound",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"  pm.response.to.have.status(404);",
+							"});",
+							"",
+							"if (pm.response.to.have.status(404)) {",
+							"{",
+							"    pm.test(\"Response message\", function () {",
+							"    pm.expect(pm.response.json().message).to.eql(\"Not Found\");",
+							"})}};"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/directions/v5/mapbox/{{place_center_1}};{{place_center_2}}?access_token={{accsess_token}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"directions",
+						"v5",
+						"mapbox",
+						"{{place_center_1}};{{place_center_2}}"
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "{{accsess_token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
